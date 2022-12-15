@@ -1,0 +1,18 @@
+import folium
+from geopy.geocoders import Nominatim
+
+# enter the zip question
+zipcode = input("Enter a zip code: ")
+
+# Using geopy to get the latitude and longitude of the zip code
+geolocator = Nominatim(user_agent="zipcode_locator")
+location = geolocator.geocode(zipcode)
+
+# Create a folium map centered at the location of the zip code
+zipcode_map = folium.Map(location=[location.latitude, location.longitude], zoom_start=12)
+
+# Add a point at the location of the zip code on the map
+folium.Marker(location=[location.latitude, location.longitude]).add_to(zipcode_map)
+
+# Display the map
+zipcode_map
